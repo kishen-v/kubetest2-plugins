@@ -3,6 +3,7 @@ package deployer
 import (
 	"bytes"
 	"fmt"
+	"github.com/ppc64le-cloud/kubetest2-plugins/pkg/providers/common"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -11,9 +12,7 @@ import (
 )
 
 var commandFilename = map[string]string{
-	// TODO: Determine the container runtime installed on the machine, rather than iterating through all available options.
-	"crio.log":       "journalctl -xeu crio --no-pager",
-	"containerd.log": "journalctl -xeu containerd --no-pager",
+	fmt.Sprintf("%s.log", common.CommonProvider.Runtime): fmt.Sprintf("journalctl -xeu %s --no-pager", common.CommonProvider.Runtime),
 
 	"dmesg.log":    "dmesg",
 	"kernel.log":   "sudo journalctl --no-pager --output=short-precise -k",
