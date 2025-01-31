@@ -17,6 +17,7 @@ module "master" {
 
   ibmcloud_api_key = var.powervs_api_key
   image_name = var.powervs_image_name
+  storage_tier = var.powervs_storage_tier
   memory = var.controlplane_powervs_memory
   network = var.powervs_network_name == "" ? ibm_pi_network.public_network[0].network_id : data.ibm_pi_network.existing_net[0].id
   powervs_service_instance_id = var.powervs_service_id
@@ -33,6 +34,7 @@ module "workers" {
 
   ibmcloud_api_key = var.powervs_api_key
   image_name = var.powervs_image_name
+  storage_tier = var.powervs_storage_tier
   memory = var.powervs_memory
   network = var.powervs_network_name == "" ? ibm_pi_network.public_network[0].network_id : data.ibm_pi_network.existing_net[0].id
   powervs_service_instance_id = var.powervs_service_id

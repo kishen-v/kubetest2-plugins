@@ -10,6 +10,7 @@ type TFVars struct {
 	ServiceID     string  `json:"powervs_service_id"`
 	NetworkName   string  `json:"powervs_network_name"`
 	ImageName     string  `json:"powervs_image_name"`
+	StorageTier   string  `json:"powervs_storage_tier"`
 	Memory        float64 `json:"powervs_memory"`
 	Processors    float64 `json:"powervs_processors"`
 	SSHKey        string  `json:"powervs_ssh_key"`

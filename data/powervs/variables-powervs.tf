@@ -19,6 +19,11 @@ variable "powervs_image_name" {
   description = "PowerVS image name to be used for the deployment"
 }
 
+variable "powervs_storage_tier" {
+  description = "PowerVS storage-tier to be used for volumes"
+  default = "tier1"
+}
+
 # By design, only the worker node's CPU/Memory can be sized through the flags passed as arguments.
 variable "powervs_memory" {
   description = "Worker node's PowerVS memory in GB"
