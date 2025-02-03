@@ -7,10 +7,11 @@ import (
 	"path"
 	"path/filepath"
 
+	"github.com/spf13/pflag"
+
 	"github.com/ppc64le-cloud/kubetest2-plugins/pkg/providers"
 	"github.com/ppc64le-cloud/kubetest2-plugins/pkg/tfvars"
 	"github.com/ppc64le-cloud/kubetest2-plugins/pkg/utils"
-	"github.com/spf13/pflag"
 
 	bootstraputil "k8s.io/cluster-bootstrap/token/util"
 )
@@ -81,7 +82,6 @@ func (p *Provider) DumpConfig(dir string) error {
 	if err != nil {
 		return fmt.Errorf("failed to dump the json config to: %s, err: %v", filename, err)
 	}
-
 	return nil
 }
 
