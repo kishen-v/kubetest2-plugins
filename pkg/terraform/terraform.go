@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/hashicorp/terraform-exec/tfexec"
-	"os"
 	"path/filepath"
 
 	"github.com/ppc64le-cloud/kubetest2-plugins/data"
@@ -25,8 +24,6 @@ func Apply(dir string, platform string) (path string, err error) {
 	if err != nil {
 		return "", err
 	}
-	tf.SetStdout(os.Stdout)
-	tf.SetStderr(os.Stderr)
 	if err = tf.Apply(context.Background()); err != nil {
 		return "", fmt.Errorf("failed to apply Terraform: %v", err)
 	}
@@ -43,8 +40,6 @@ func Destroy(dir string, platform string) (err error) {
 	if err != nil {
 		return err
 	}
-	tf.SetStdout(os.Stdout)
-	tf.SetStderr(os.Stderr)
 	return tf.Destroy(context.Background())
 }
 
@@ -57,8 +52,6 @@ func Output(dir string, platform string) (output map[string]interface{}, err err
 	if err != nil {
 		return nil, err
 	}
-	tf.SetStdout(os.Stdout)
-	tf.SetStderr(os.Stderr)
 	var options []tfexec.OutputOption
 	options = append(options, tfexec.State(StateFileName))
 	outputMeta, err := tf.Output(context.Background(), options...)
@@ -91,8 +84,6 @@ func unpackAndInit(dir string, platform string) (err error) {
 	if err != nil {
 		return err
 	}
-	tf.SetStdout(os.Stdout)
-	tf.SetStderr(os.Stderr)
 	err = tf.Init(context.Background())
 	return err
 }

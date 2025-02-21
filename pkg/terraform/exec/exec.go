@@ -2,6 +2,7 @@ package exec
 
 import (
 	"fmt"
+	"os"
 	goexec "os/exec"
 
 	"github.com/hashicorp/terraform-exec/tfexec"
@@ -16,5 +17,7 @@ func GetTerraformExecutor(dir, platform string) (*tfexec.Terraform, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not create terraform executor: %w", err)
 	}
+	tf.SetStdout(os.Stdout)
+	tf.SetStderr(os.Stderr)
 	return tf, nil
 }

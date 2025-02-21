@@ -8,7 +8,7 @@ import (
 	"k8s.io/klog/v2"
 
 	"github.com/apenella/go-ansible/v2/pkg/execute"
-	ansiblePlaybook "github.com/apenella/go-ansible/v2/pkg/playbook"
+	ansibleplaybook "github.com/apenella/go-ansible/v2/pkg/playbook"
 
 	"github.com/ppc64le-cloud/kubetest2-plugins/data"
 )
@@ -26,17 +26,17 @@ func Playbook(dir, inventory, playbook string, extraVars map[string]string) erro
 		extraVarsMap[key] = val
 	}
 	klog.Infof("Running ansible playbook: %s", playbook)
-	playbookCmd := ansiblePlaybook.NewAnsiblePlaybookCmd(
-		ansiblePlaybook.WithPlaybooks(filepath.Join(dir, playbook)),
-		ansiblePlaybook.WithPlaybookOptions(
-			&ansiblePlaybook.AnsiblePlaybookOptions{
+	playbookCmd := ansibleplaybook.NewAnsiblePlaybookCmd(
+		ansibleplaybook.WithPlaybooks(filepath.Join(dir, playbook)),
+		ansibleplaybook.WithPlaybookOptions(
+			&ansibleplaybook.AnsiblePlaybookOptions{
 				ExtraVars: extraVarsMap,
 				Inventory: inventory,
 			}),
 	)
 	return execute.NewDefaultExecute(
 		execute.WithCmd(playbookCmd),
-		execute.WithErrorEnrich(ansiblePlaybook.NewAnsiblePlaybookErrorEnrich()),
+		execute.WithErrorEnrich(ansibleplaybook.NewAnsiblePlaybookErrorEnrich()),
 	).Execute(context.Background())
 }
 
