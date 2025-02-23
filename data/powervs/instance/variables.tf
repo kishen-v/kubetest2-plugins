@@ -52,6 +52,7 @@ variable "system_type" {
 
 variable "storage_tier" {
     description = "I/O operation per second (IOPS) based storage on requirement - tier0, tier1, tier3 or tier5k"
+    default = "tier1"
 }
 
 variable "image_name" {

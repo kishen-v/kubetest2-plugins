@@ -22,7 +22,6 @@ module "master" {
   powervs_service_instance_id = var.powervs_service_id
   processors = var.controlplane_powervs_processors
   ssh_key_name = var.powervs_ssh_key
-  storage_tier = var.powervs_storage_tier
   vm_name = "${var.cluster_name}-master"
   ibmcloud_region = var.powervs_region
   ibmcloud_zone = var.powervs_zone
@@ -39,7 +38,6 @@ module "workers" {
   powervs_service_instance_id = var.powervs_service_id
   processors = var.powervs_processors
   ssh_key_name = var.powervs_ssh_key
-  storage_tier = var.powervs_storage_tier
   vm_name = "${var.cluster_name}-worker"
   ibmcloud_region = var.powervs_region
   ibmcloud_zone = var.powervs_zone
